@@ -10,13 +10,23 @@ This guide provides instructions on configuring an OpenVPN server on a router wi
 ## Step 1: Update firmware and software on the router
 
 1. [Update the OpenWRT firmware.](https://openwrt.org/docs/guide-user/installation/generic.sysupgrade) **WARNING:** by default, this removes all installed packages and some of the configuration files. Make sure to create a backup or enable a persistent configuration before upgrading.
-2. Update the package list: `opkg update`.
-3. Installed and upgradable packages can be viewed using, respectively: `opkg list-installed` and `opkg list-upgradable`.
+2. Update the package list: 
+   ```
+   opkg update
+   ```
+3. View installed packages using:
+   ```
+   opkg list-installed
+   ```
+   View packages that are outdated using:
+   ```
+   opkg list-upgradable
+   ```
 4. Upgrade all installed packages:
    ```
    opkg list-upgradable | cut -f 1 -d ' ' | xargs opkg upgrade
    ```
-   Router may reboot during the process.
+   The router may reboot during the process.
 5. Install packages for OpenVPN:<br>
    `opkg install openvpn-openssl luci-app-openvpn`<br>
    and DDNS:<br>
